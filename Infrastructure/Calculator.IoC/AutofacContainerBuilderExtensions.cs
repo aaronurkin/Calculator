@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using Calculator.Application.Services;
 using Calculator.Application.Services.Implementations;
+using Calculator.Presentation.Services;
+using Calculator.Presentation.Services.Implementations;
 using Microsoft.Extensions.Configuration;
 
 namespace Calculator.IoC
@@ -15,14 +17,18 @@ namespace Calculator.IoC
                 .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<CalculatorOperationResultResolver>()
-                .As<ICalculatorOperationResultResolver>()
+                .RegisterType<CalculatorApiRequestsHandler>()
+                .As<ICalculatorApiRequestsHandler>()
                 .InstancePerLifetimeScope();
 
             builder
                 .RegisterType<CalculatorOperationManager>()
                 .As<ICalculatorOperationManager>()
                 .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CalculatorOperationResultResolver>()
+                .Named<ICalculatorOperationResultResolver>("COMMON");
 
             builder
                 .RegisterType<AdditionCalculatorOperation>()

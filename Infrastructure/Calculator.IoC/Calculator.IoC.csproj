@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Calculator.Application.Services.Implementations\Calculator.Application.Services.Implementations.csproj" />
+    <ProjectReference Include="..\Calculator.Presentation.Services.Implementations\Calculator.Presentation.Services.Implementations.csproj" />
   </ItemGroup>
 
 </Project>

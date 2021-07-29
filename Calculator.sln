@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{33DA2486
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.IoC", "Infrastructure\Calculator.IoC\Calculator.IoC.csproj", "{43619FEE-D26E-415E-931C-1612AE47F106}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Presentation.API", "Presentation\Calculator.Presentation.API\Calculator.Presentation.API.csproj", "{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{43619FEE-D26E-415E-931C-1612AE47F106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43619FEE-D26E-415E-931C-1612AE47F106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43619FEE-D26E-415E-931C-1612AE47F106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{43619FEE-D26E-415E-931C-1612AE47F106} = {D9D4EE34-5CB9-4FA7-8DB2-6BBB9E10DD86}
+		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49} = {CA95B48A-8772-40F7-B48B-095FBEB6D5EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {130C91FD-C314-4873-9EB8-0B337ACB70FE}

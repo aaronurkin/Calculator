@@ -9,4 +9,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Calculator.Application.Services\Calculator.Application.Services.csproj" />
+    <ProjectReference Include="..\Calculator.Application.Services.Implementations\Calculator.Application.Services.Implementations.csproj" />
+  </ItemGroup>
+
 </Project>

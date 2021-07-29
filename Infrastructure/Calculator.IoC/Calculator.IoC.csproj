@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Calculator.Application.Services\Calculator.Application.Services.csproj" />
     <ProjectReference Include="..\Calculator.Application.Services.Implementations\Calculator.Application.Services.Implementations.csproj" />
   </ItemGroup>
 

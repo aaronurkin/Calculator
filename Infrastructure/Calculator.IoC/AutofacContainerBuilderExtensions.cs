@@ -10,6 +10,21 @@ namespace Calculator.IoC
         public static ContainerBuilder AddApplication(this ContainerBuilder builder, IConfiguration configuration)
         {
             builder
+                .RegisterType<AutofacServiceResolver>()
+                .As<IServiceResolver>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CalculatorOperationResultResolver>()
+                .As<ICalculatorOperationResultResolver>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<CalculatorOperationManager>()
+                .As<ICalculatorOperationManager>()
+                .InstancePerLifetimeScope();
+
+            builder
                 .RegisterType<AdditionCalculatorOperation>()
                 .Named<ICalculatorOperation>("ADDITION");
 

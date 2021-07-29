@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.IoC", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Presentation.API", "Presentation\Calculator.Presentation.API\Calculator.Presentation.API.csproj", "{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Presentation.Models", "Presentation\Calculator.Presentation.Models\Calculator.Presentation.Models.csproj", "{D7812C43-187E-4A1B-AB0D-56464ADFCDD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7812C43-187E-4A1B-AB0D-56464ADFCDD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7812C43-187E-4A1B-AB0D-56464ADFCDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7812C43-187E-4A1B-AB0D-56464ADFCDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7812C43-187E-4A1B-AB0D-56464ADFCDD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{43619FEE-D26E-415E-931C-1612AE47F106} = {D9D4EE34-5CB9-4FA7-8DB2-6BBB9E10DD86}
 		{20312502-7E8A-45F4-B2A8-7B5B4A5DAD49} = {CA95B48A-8772-40F7-B48B-095FBEB6D5EC}
+		{D7812C43-187E-4A1B-AB0D-56464ADFCDD5} = {CA95B48A-8772-40F7-B48B-095FBEB6D5EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {130C91FD-C314-4873-9EB8-0B337ACB70FE}

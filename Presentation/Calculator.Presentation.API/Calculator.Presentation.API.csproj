@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Calculator.IoC\Calculator.IoC.csproj" />
+    <ProjectReference Include="..\Calculator.Presentation.Models\Calculator.Presentation.Models.csproj" />
   </ItemGroup>
 
 

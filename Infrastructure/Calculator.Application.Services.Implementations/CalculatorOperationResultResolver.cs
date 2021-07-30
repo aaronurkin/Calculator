@@ -1,16 +1,21 @@
-﻿using Calculator.Application.Models;
+﻿using AutoMapper;
+using Calculator.Application.Models;
 
 namespace Calculator.Application.Services.Implementations
 {
     public class CalculatorOperationResultResolver : ICalculatorOperationResultResolver
     {
+        private readonly IMapper mapper;
+
+        public CalculatorOperationResultResolver(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
+
         public CalculateResultDto Resolve(OperationCalculateResult operationResult)
         {
-            // TODO: Map using Automapper
-            return new CalculateResultDto
-            {
-                Value = operationResult.Value
-            };
+            var result = this.mapper.Map<CalculateResultDto>(operationResult);
+            return result;
         }
     }
 }

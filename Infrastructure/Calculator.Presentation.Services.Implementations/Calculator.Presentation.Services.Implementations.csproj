@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Core\Calculator.Application.Services\Calculator.Application.Services.csproj" />
     <ProjectReference Include="..\..\Presentation\Calculator.Presentation.Models\Calculator.Presentation.Models.csproj" />
     <ProjectReference Include="..\..\Presentation\Calculator.Presentation.Services\Calculator.Presentation.Services.csproj" />

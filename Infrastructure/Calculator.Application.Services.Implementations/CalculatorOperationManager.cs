@@ -1,13 +1,19 @@
-﻿using Calculator.Application.Models;
+﻿using AutoMapper;
+using Calculator.Application.Models;
 
 namespace Calculator.Application.Services.Implementations
 {
     public class CalculatorOperationManager : ICalculatorOperationManager
     {
+        private readonly IMapper mapper;
         private readonly IServiceResolver serviceResolver;
 
-        public CalculatorOperationManager(IServiceResolver serviceResolver)
+        public CalculatorOperationManager(
+            IMapper mapper,
+            IServiceResolver serviceResolver
+        )
         {
+            this.mapper = mapper;
             this.serviceResolver = serviceResolver;
         }
 
@@ -15,8 +21,10 @@ namespace Calculator.Application.Services.Implementations
         {
             var operation = this.serviceResolver.ResolveNamed<ICalculatorOperation>(data.OperationType);
             var resultResolver = this.serviceResolver.ResolveNamed<ICalculatorOperationResultResolver>(data.ResponseType);
-            // TODO: Map using Automapper
-            var operationResult = operation.Calculate(new OperationCalculateDto { LeftOperand = data.LeftOperand, RightOperand = data.RightOperand });
+
+            var dto = this.mapper.Map<OperationCalculateDto>(data);
+
+            var operationResult = operation.Calculate(dto);
             var result = resultResolver.Resolve(operationResult);
 
             return result;

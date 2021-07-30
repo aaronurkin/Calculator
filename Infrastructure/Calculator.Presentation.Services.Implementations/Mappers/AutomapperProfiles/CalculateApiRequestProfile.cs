@@ -9,10 +9,10 @@ namespace Calculator.Presentation.Services.Implementations.Mappers.AutomapperPro
         public CalculateApiRequestProfile()
         {
             this.CreateMap<CalculateApiRequest, CalculateDto>()
+                .ForMember(dto => dto.ResponseType, opts => opts.MapFrom<ResponseTypeValueResolver>())
                 .ForMember(dto => dto.OperationType, opts => opts.MapFrom(request => request.Operation))
                 .ForMember(dto => dto.LeftOperand, opts => opts.MapFrom(request => request.LeftOperand))
-                .ForMember(dto => dto.RightOperand, opts => opts.MapFrom(request => request.RightOperand))
-                .ForMember(dto => dto.ResponseType, opts => opts.MapFrom(request => request.ResponseType ?? "COMMON"));
+                .ForMember(dto => dto.RightOperand, opts => opts.MapFrom(request => request.RightOperand));
         }
     }
 }

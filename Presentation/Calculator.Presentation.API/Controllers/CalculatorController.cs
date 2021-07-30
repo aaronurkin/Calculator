@@ -18,7 +18,7 @@ namespace Calculator.Presentation.API.Controllers
         public IActionResult Post(CalculateApiRequest model)
         {
             var response = this.requestsHandler.Handle(model);
-            return this.StatusCode((int)response.StatusCode, response.Data);
+            return this.StatusCode((int)response.StatusCode, response);
         }
     }
 }

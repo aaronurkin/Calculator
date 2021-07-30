@@ -26,22 +26,37 @@ namespace Calculator.Presentation.Services.Implementations
             this.requestContext = requestContext;
         }
 
-        public CalculateApiResponse<CalculateResultDto> Handle(CalculateApiRequest request)
+        public CalculateApiResponse Handle(CalculateApiRequest request)
         {
             try
             {
                 var operation = this.services.ResolveNamed<ICalculatorOperation>(request.Operation);
+
+                if (operation == null)
+                {
+                    this.logger.LogWarning($"Invalid operation has been requested: {request.Operation}");
+                    return new CalculateApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Invalid operation {request.Operation}");
+                }
+
                 var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
 
                 var resultResolver = this.services.ResolveNamed<ICalculatorOperationResultResolver>(this.requestContext.ServiceName);
-                var result = resultResolver.Resolve(operationResult);
 
-                return new CalculateApiResponse<CalculateResultDto>(result);
+                if (resultResolver == null)
+                {
+                    this.logger.LogWarning($"Unknown service name has been generated: {this.requestContext.ServiceName}");
+                    return new CalculateApiResponse<string>(System.Net.HttpStatusCode.BadRequest, "Unknown client");
+                }
+
+                var responseData = resultResolver.Resolve(operationResult);
+
+                return new CalculateApiResponse<CalculateResultDto>(responseData);
             }
             catch (System.Exception exception)
             {
                 this.logger.LogError(exception, "FAILED Handling {0}", typeof(CalculateApiRequest).Name);
-                return new CalculateApiResponse<CalculateResultDto>(System.Net.HttpStatusCode.InternalServerError);
+                // TODO: Remove exception from response body! TEST PURPOSES ONLY!
+                return new CalculateApiResponse<System.Exception>(System.Net.HttpStatusCode.InternalServerError, exception);
             }
         }
     }

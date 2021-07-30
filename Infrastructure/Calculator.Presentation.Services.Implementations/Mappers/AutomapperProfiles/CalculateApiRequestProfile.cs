@@ -8,9 +8,7 @@ namespace Calculator.Presentation.Services.Implementations.Mappers.AutomapperPro
     {
         public CalculateApiRequestProfile()
         {
-            this.CreateMap<CalculateApiRequest, CalculateDto>()
-                .ForMember(dto => dto.ResponseType, opts => opts.MapFrom<ResponseTypeValueResolver>())
-                .ForMember(dto => dto.OperationType, opts => opts.MapFrom(request => request.Operation))
+            this.CreateMap<CalculateApiRequest, OperationCalculateDto>()
                 .ForMember(dto => dto.LeftOperand, opts => opts.MapFrom(request => request.LeftOperand))
                 .ForMember(dto => dto.RightOperand, opts => opts.MapFrom(request => request.RightOperand));
         }

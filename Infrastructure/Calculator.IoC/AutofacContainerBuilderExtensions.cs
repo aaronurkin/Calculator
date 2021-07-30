@@ -28,11 +28,6 @@ namespace Calculator.IoC
                 .InstancePerLifetimeScope();
 
             builder
-                .RegisterType<CalculatorOperationManager>()
-                .As<ICalculatorOperationManager>()
-                .InstancePerLifetimeScope();
-
-            builder
                 .RegisterType<TwoSegmentsUserAgentApplicationRequestContextResolver>()
                 .Keyed<IApplicationRequestContextResolver>(2);
 

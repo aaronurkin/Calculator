@@ -9,6 +9,11 @@ namespace Calculator.Presentation.Models
         {
         }
 
+        public CalculateApiResponse(HttpStatusCode statusCode)
+            : this(statusCode, default(TData))
+        {
+        }
+
         public CalculateApiResponse(HttpStatusCode statusCode, TData data)
         {
             StatusCode = statusCode;

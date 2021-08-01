@@ -34,8 +34,8 @@ namespace Calculator.Presentation.Services.Implementations
 
                 if (operation == null)
                 {
-                    this.logger.LogWarning($"Invalid operation has been requested: {request.Operation}");
-                    return new CalculateApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Invalid operation {request.Operation}");
+                    this.logger.LogWarning($"Unknown operation has been requested: {request.Operation}");
+                    return new CalculateApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Unknown operation {request.Operation}");
                 }
 
                 var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
@@ -45,7 +45,7 @@ namespace Calculator.Presentation.Services.Implementations
                 if (resultResolver == null)
                 {
                     this.logger.LogWarning($"Unknown service name has been generated: {this.requestContext.ServiceName}");
-                    return new CalculateApiResponse<string>(System.Net.HttpStatusCode.BadRequest, "Unknown client");
+                    return new UnknownClientCalculateApiResponse();
                 }
 
                 var responseData = resultResolver.Resolve(operationResult);
@@ -55,8 +55,7 @@ namespace Calculator.Presentation.Services.Implementations
             catch (System.Exception exception)
             {
                 this.logger.LogError(exception, "FAILED Handling {0}", typeof(CalculateApiRequest).Name);
-                // TODO: Remove exception from response body! TEST PURPOSES ONLY!
-                return new CalculateApiResponse<System.Exception>(System.Net.HttpStatusCode.InternalServerError, exception);
+                return new CalculateApiResponse(System.Net.HttpStatusCode.InternalServerError);
             }
         }
     }

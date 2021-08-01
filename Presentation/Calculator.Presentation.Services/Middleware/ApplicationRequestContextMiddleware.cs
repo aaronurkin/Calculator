@@ -2,6 +2,7 @@
 using Calculator.Presentation.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 namespace Calculator.Presentation.Services.Middleware
@@ -23,8 +24,12 @@ namespace Calculator.Presentation.Services.Middleware
 
             if (applicationRequestContextResolver == null)
             {
+                var responseContent = JsonConvert.SerializeObject(new UnknownClientCalculateApiResponse());
+
                 httpContext.Response.StatusCode = 400;
-                return Task.CompletedTask;
+                httpContext.Response.ContentType = $"{System.Net.Mime.MediaTypeNames.Application.Json}; charset=utf-8";
+
+                return httpContext.Response.WriteAsync(responseContent);
             }
 
             applicationRequestContextResolver.Resolve(new ApplicationRequestContextResolverOptions

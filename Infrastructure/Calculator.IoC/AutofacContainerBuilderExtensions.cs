@@ -63,6 +63,10 @@ namespace Calculator.IoC
                 .RegisterType<DivisionCalculatorOperation>()
                 .Named<ICalculatorOperation>("DIVISION");
 
+            builder
+                .RegisterType<ExponentiationCalculatorOperation>()
+                .Named<ICalculatorOperation>("EXPONENTIATION");
+
             return builder;
         }
     }

@@ -12,7 +12,7 @@ namespace Calculator.Application.Services.Tests
         [InlineData(3,2,5)]
         [InlineData(7,3,10)]
         [InlineData(6,3,9)]
-        public void CalculateAdditionCalculatorOperationTests(decimal leftOperand, decimal rightOperand, decimal expected)
+        public void CalculateAdditionCalculatorOperationTests(double leftOperand, double rightOperand, double expected)
         {
             var addition = new AdditionCalculatorOperation();
             var model = new OperationCalculateDto
@@ -30,7 +30,7 @@ namespace Calculator.Application.Services.Tests
         [InlineData(5,3,2)]
         [InlineData(10,7,3)]
         [InlineData(9,3,6)]
-        public void CalculateSubtractionCalculatorOperationTests(decimal leftOperand, decimal rightOperand, decimal expected)
+        public void CalculateSubtractionCalculatorOperationTests(double leftOperand, double rightOperand, double expected)
         {
             var subtraction = new SubtractionCalculatorOperation();
             var model = new OperationCalculateDto
@@ -48,7 +48,7 @@ namespace Calculator.Application.Services.Tests
         [InlineData(2,3,6)]
         [InlineData(7,10,70)]
         [InlineData(6,3,18)]
-        public void CalculateMultiplicationCalculatorOperationTests(decimal leftOperand, decimal rightOperand, decimal expected)
+        public void CalculateMultiplicationCalculatorOperationTests(double leftOperand, double rightOperand, double expected)
         {
             var multiplication = new MultiplicationCalculatorOperation();
             var model = new OperationCalculateDto
@@ -83,7 +83,7 @@ namespace Calculator.Application.Services.Tests
         [InlineData(18,3,6)]
         [InlineData(10,2,5)]
         [InlineData(6,3,2)]
-        public void CalculateDivisionCalculatorOperationTests(decimal leftOperand, decimal rightOperand, decimal expected)
+        public void CalculateDivisionCalculatorOperationTests(double leftOperand, double rightOperand, double expected)
         {
             var division = new DivisionCalculatorOperation();
             var model = new OperationCalculateDto

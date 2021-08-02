@@ -95,5 +95,23 @@ namespace Calculator.Application.Services.Tests
 
             Assert.Equal(expected, actual.Value);
         }
+
+        [Theory]
+        [InlineData(1, 10, 1)]
+        [InlineData(10, 0, 1)]
+        [InlineData(10, 2, 100)]
+        [InlineData(2, 3, 8)]
+        public void CalculateExponentiationCalculatorOperationTests(double leftOperand, double rightOperand, double expected)
+        {
+            var exponentiation = new ExponentiationCalculatorOperation();
+            var model = new OperationCalculateDto
+            {
+                LeftOperand = leftOperand,
+                RightOperand = rightOperand
+            };
+            var actual = exponentiation.Calculate(model);
+
+            Assert.Equal(expected, actual.Value);
+        }
     }
 }

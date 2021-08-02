@@ -4,8 +4,8 @@
     {
         public string Operation { get; set; }
 
-        public decimal LeftOperand { get; set; }
+        public double LeftOperand { get; set; }
 
-        public decimal RightOperand { get; set; }
+        public double RightOperand { get; set; }
     }
 }

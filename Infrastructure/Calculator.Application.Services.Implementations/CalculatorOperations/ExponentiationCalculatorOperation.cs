@@ -4,6 +4,8 @@ namespace Calculator.Application.Services.Implementations
 {
     public class ExponentiationCalculatorOperation : ICalculatorOperation
     {
+        public const string NAME = "EXPONENTIATION";
+
         public OperationCalculateResult Calculate(OperationCalculateDto input)
         {
             if (input == null)

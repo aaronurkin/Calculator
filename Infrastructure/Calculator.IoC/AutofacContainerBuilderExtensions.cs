@@ -37,35 +37,35 @@ namespace Calculator.IoC
 
             builder
                 .RegisterType<CalculatorOperationResultResolver>()
-                .Named<ICalculatorOperationResultResolver>("ANGULAR_0.1.23");
+                .Named<ICalculatorOperationResultResolver>(ApplicationApiClient.ANGULAR_0_1_23);
 
             builder
                 .RegisterType<CalculatorOperationResultResolver>()
-                .Named<ICalculatorOperationResultResolver>("IOS_14.4_0.0.1");
+                .Named<ICalculatorOperationResultResolver>(ApplicationApiClient.IOS_14_4_0_0_1);
 
             builder
                 .RegisterType<CalculatorOperationResultResolver>()
-                .Named<ICalculatorOperationResultResolver>("ANDROID_8_0.0.2");
+                .Named<ICalculatorOperationResultResolver>(ApplicationApiClient.ANDROID_8_0_0_2);
 
             builder
                 .RegisterType<AdditionCalculatorOperation>()
-                .Named<ICalculatorOperation>("ADDITION");
+                .Named<ICalculatorOperation>(AdditionCalculatorOperation.NAME);
 
             builder
                 .RegisterType<SubtractionCalculatorOperation>()
-                .Named<ICalculatorOperation>("SUBTRACTION");
+                .Named<ICalculatorOperation>(SubtractionCalculatorOperation.NAME);
 
             builder
                 .RegisterType<MultiplicationCalculatorOperation>()
-                .Named<ICalculatorOperation>("MULTIPLICATION");
+                .Named<ICalculatorOperation>(MultiplicationCalculatorOperation.NAME);
 
             builder
                 .RegisterType<DivisionCalculatorOperation>()
-                .Named<ICalculatorOperation>("DIVISION");
+                .Named<ICalculatorOperation>(DivisionCalculatorOperation.NAME);
 
             builder
                 .RegisterType<ExponentiationCalculatorOperation>()
-                .Named<ICalculatorOperation>("EXPONENTIATION");
+                .Named<ICalculatorOperation>(ExponentiationCalculatorOperation.NAME);
 
             return builder;
         }

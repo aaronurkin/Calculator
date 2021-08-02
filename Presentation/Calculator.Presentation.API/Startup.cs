@@ -1,11 +1,13 @@
 using Autofac;
 using Calculator.IoC;
+using Calculator.Presentation.Models.Serialization;
 using Calculator.Presentation.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 
 namespace Calculator.Presentation.API
 {
@@ -22,7 +24,12 @@ namespace Calculator.Presentation.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMapping(this.GetType());
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddNewtonsoftJson(configure =>
+                {
+                    configure.SerializerSettings.ContractResolver = new ApiResponseContractResolver();
+                });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

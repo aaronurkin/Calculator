@@ -1,5 +1,6 @@
 ﻿using Calculator.Application.Services;
 using Calculator.Presentation.Models;
+using Calculator.Presentation.Models.Serialization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
@@ -24,7 +25,12 @@ namespace Calculator.Presentation.Services.Middleware
 
             if (applicationRequestContextResolver == null)
             {
-                var responseContent = JsonConvert.SerializeObject(new UnknownClientCalculateApiResponse());
+                var settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new ApiResponseContractResolver()
+                };
+                var responseContent = JsonConvert
+                    .SerializeObject(new UnknownClientCalculateApiResponse(), settings);
 
                 httpContext.Response.StatusCode = 400;
                 httpContext.Response.ContentType = $"{System.Net.Mime.MediaTypeNames.Application.Json}; charset=utf-8";

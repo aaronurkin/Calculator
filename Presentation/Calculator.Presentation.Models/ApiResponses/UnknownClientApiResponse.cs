@@ -1,9 +1,14 @@
 ﻿namespace Calculator.Presentation.Models
 {
-    public class UnknownClientApiResponse : ApiResponse<string>
+    public class UnknownClientApiResponse : ApiResponse<ApplicationApiError>
     {
-        public UnknownClientApiResponse()
-            : base(System.Net.HttpStatusCode.BadRequest, "Unknown client")
+        public UnknownClientApiResponse(string errorMessage)
+            : this(new UnknownClientApplicationApiError(errorMessage))
+        {
+        }
+
+        public UnknownClientApiResponse(UnknownClientApplicationApiError error)
+            : base(System.Net.HttpStatusCode.BadRequest, error)
         {
         }
     }

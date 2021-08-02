@@ -27,7 +27,7 @@ namespace Calculator.Presentation.Services.Implementations
 
             if (this.mapper == null || this.logger == null || this.requestContext == null)
             {
-                throw new System.Exception($"{typeof(CalculatorApiRequestsHandler).FullName} instanse can't be created");
+                throw new System.Exception($"Missing dependencies. {typeof(CalculatorApiRequestsHandler).FullName} instanse can't be created");
             }
         }
 
@@ -40,7 +40,7 @@ namespace Calculator.Presentation.Services.Implementations
                 if (operation == null)
                 {
                     this.logger.LogWarning($"Unknown operation has been requested: {request.Operation}");
-                    return new ApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Unknown operation {request.Operation}");
+                    return new UnknownOperationApiResponse($"Unknown operation: {request.Operation}");
                 }
 
                 var resultResolver = this.services.ResolveNamed<ICalculatorOperationResultResolver>(this.requestContext.ServiceName);
@@ -48,7 +48,7 @@ namespace Calculator.Presentation.Services.Implementations
                 if (resultResolver == null)
                 {
                     this.logger.LogWarning($"Unknown service name has been generated: {this.requestContext.ServiceName}");
-                    return new UnknownClientApiResponse();
+                    return new UnknownClientApiResponse($"Unknown client: {this.requestContext.ServiceName}");
                 }
 
                 var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));

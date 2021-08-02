@@ -4,6 +4,6 @@ namespace Calculator.Presentation.Services
 {
     public interface ICalculatorApiRequestsHandler
     {
-        CalculateApiResponse Handle(CalculateApiRequest request);
+        ApiResponse Handle(CalculateApiRequest request);
     }
 }

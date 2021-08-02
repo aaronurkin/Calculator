@@ -10,11 +10,11 @@ namespace Calculator.Presentation.Models.Serialization
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
 
-            if (property.DeclaringType == typeof(CalculateApiResponse))
+            if (property.DeclaringType == typeof(ApiResponse))
             {
                 property.ShouldSerialize = instance =>
                     !property.PropertyName
-                        .Equals(nameof(CalculateApiResponse.StatusCode), System.StringComparison.OrdinalIgnoreCase);
+                        .Equals(nameof(ApiResponse.StatusCode), System.StringComparison.OrdinalIgnoreCase);
             }
 
             return property;

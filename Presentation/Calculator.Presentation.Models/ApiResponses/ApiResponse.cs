@@ -2,9 +2,9 @@
 
 namespace Calculator.Presentation.Models
 {
-    public class CalculateApiResponse
+    public class ApiResponse
     {
-        public CalculateApiResponse(HttpStatusCode statusCode)
+        public ApiResponse(HttpStatusCode statusCode)
         {
             StatusCode = statusCode;
         }
@@ -12,19 +12,19 @@ namespace Calculator.Presentation.Models
         public HttpStatusCode StatusCode { get; set; }
     }
 
-    public class CalculateApiResponse<TData> : CalculateApiResponse
+    public class ApiResponse<TData> : ApiResponse
     {
-        public CalculateApiResponse(TData data)
+        public ApiResponse(TData data)
             : this(HttpStatusCode.OK, data)
         {
         }
 
-        public CalculateApiResponse(HttpStatusCode statusCode)
+        public ApiResponse(HttpStatusCode statusCode)
             : this(statusCode, default(TData))
         {
         }
 
-        public CalculateApiResponse(HttpStatusCode statusCode, TData data)
+        public ApiResponse(HttpStatusCode statusCode, TData data)
             : base(statusCode)
         {
             Data = data;

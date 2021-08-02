@@ -30,7 +30,7 @@ namespace Calculator.Presentation.Services.Middleware
                     ContractResolver = new ApiResponseContractResolver()
                 };
                 var responseContent = JsonConvert
-                    .SerializeObject(new UnknownClientCalculateApiResponse(), settings);
+                    .SerializeObject(new UnknownClientApiResponse(), settings);
 
                 httpContext.Response.StatusCode = 400;
                 httpContext.Response.ContentType = $"{System.Net.Mime.MediaTypeNames.Application.Json}; charset=utf-8";

@@ -13,17 +13,22 @@ namespace Calculator.Presentation.Services.Implementations
         private readonly ApplicationRequestContext requestContext;
         private readonly ILogger<CalculatorApiRequestsHandler> logger;
 
-        public CalculatorApiRequestsHandler(
-            IMapper mapper,
-            IServiceResolver services,
-            ApplicationRequestContext requestContext,
-            ILogger<CalculatorApiRequestsHandler> logger
-        )
+        public CalculatorApiRequestsHandler(IServiceResolver services)
         {
-            this.logger = logger;
-            this.mapper = mapper;
+            if (services == null)
+            {
+                throw new System.ArgumentNullException(nameof(services));
+            }
+
             this.services = services;
-            this.requestContext = requestContext;
+            this.mapper = services.Resolve<IMapper>();
+            this.requestContext = services.Resolve<ApplicationRequestContext>();
+            this.logger = services.Resolve<ILogger<CalculatorApiRequestsHandler>>();
+
+            if (this.mapper == null || this.logger == null || this.requestContext == null)
+            {
+                throw new System.Exception($"{typeof(CalculatorApiRequestsHandler).FullName} instanse can't be created");
+            }
         }
 
         public ApiResponse Handle(CalculateApiRequest request)
@@ -38,8 +43,6 @@ namespace Calculator.Presentation.Services.Implementations
                     return new ApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Unknown operation {request.Operation}");
                 }
 
-                var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
-
                 var resultResolver = this.services.ResolveNamed<ICalculatorOperationResultResolver>(this.requestContext.ServiceName);
 
                 if (resultResolver == null)
@@ -48,6 +51,7 @@ namespace Calculator.Presentation.Services.Implementations
                     return new UnknownClientApiResponse();
                 }
 
+                var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
                 var responseData = resultResolver.Resolve(operationResult);
 
                 return new ApiResponse<CalculateResultDto>(responseData);

@@ -9,7 +9,7 @@ namespace Calculator.Presentation.Models
             StatusCode = statusCode;
         }
 
-        public HttpStatusCode StatusCode { get; set; }
+        public HttpStatusCode StatusCode { get; }
     }
 
     public class ApiResponse<TData> : ApiResponse
@@ -30,6 +30,6 @@ namespace Calculator.Presentation.Models
             Data = data;
         }
 
-        public TData Data { get; set; }
+        public TData Data { get; }
     }
 }

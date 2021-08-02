@@ -4,6 +4,8 @@ namespace Calculator.Application.Services.Implementations
 {
     public class DivisionCalculatorOperation : ICalculatorOperation
     {
+        public const string NAME = "DIVISION";
+
         public OperationCalculateResult Calculate(OperationCalculateDto input)
         {
             if (input == null)

@@ -4,6 +4,8 @@ namespace Calculator.Application.Services.Implementations
 {
     public class MultiplicationCalculatorOperation : ICalculatorOperation
     {
+        public const string NAME = "MULTIPLICATION";
+
         public OperationCalculateResult Calculate(OperationCalculateDto input)
         {
             if (input == null)

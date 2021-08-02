@@ -13,17 +13,22 @@ namespace Calculator.Presentation.Services.Implementations
         private readonly ApplicationRequestContext requestContext;
         private readonly ILogger<CalculatorApiRequestsHandler> logger;
 
-        public CalculatorApiRequestsHandler(
-            IMapper mapper,
-            IServiceResolver services,
-            ApplicationRequestContext requestContext,
-            ILogger<CalculatorApiRequestsHandler> logger
-        )
+        public CalculatorApiRequestsHandler(IServiceResolver services)
         {
-            this.logger = logger;
-            this.mapper = mapper;
+            if (services == null)
+            {
+                throw new System.ArgumentNullException(nameof(services));
+            }
+
             this.services = services;
-            this.requestContext = requestContext;
+            this.mapper = services.Resolve<IMapper>();
+            this.requestContext = services.Resolve<ApplicationRequestContext>();
+            this.logger = services.Resolve<ILogger<CalculatorApiRequestsHandler>>();
+
+            if (this.mapper == null || this.logger == null || this.requestContext == null)
+            {
+                throw new System.Exception($"Missing dependencies. {typeof(CalculatorApiRequestsHandler).FullName} instanse can't be created");
+            }
         }
 
         public ApiResponse Handle(CalculateApiRequest request)
@@ -35,19 +40,18 @@ namespace Calculator.Presentation.Services.Implementations
                 if (operation == null)
                 {
                     this.logger.LogWarning($"Unknown operation has been requested: {request.Operation}");
-                    return new ApiResponse<string>(System.Net.HttpStatusCode.BadRequest, $"Unknown operation {request.Operation}");
+                    return new UnknownOperationApiResponse($"Unknown operation: {request.Operation}");
                 }
-
-                var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
 
                 var resultResolver = this.services.ResolveNamed<ICalculatorOperationResultResolver>(this.requestContext.ServiceName);
 
                 if (resultResolver == null)
                 {
                     this.logger.LogWarning($"Unknown service name has been generated: {this.requestContext.ServiceName}");
-                    return new UnknownClientApiResponse();
+                    return new UnknownClientApiResponse($"Unknown client: {this.requestContext.ServiceName}");
                 }
 
+                var operationResult = operation.Calculate(this.mapper.Map<OperationCalculateDto>(request));
                 var responseData = resultResolver.Resolve(operationResult);
 
                 return new ApiResponse<CalculateResultDto>(responseData);

@@ -2,9 +2,9 @@
 
 namespace Calculator.Application.Services.Implementations
 {
-    public class AdditionCalculatorOperation : ICalculatorOperation
+    public class ExponentiationCalculatorOperation : ICalculatorOperation
     {
-        public const string NAME = "ADDITION";
+        public const string NAME = "EXPONENTIATION";
 
         public OperationCalculateResult Calculate(OperationCalculateDto input)
         {
@@ -13,7 +13,7 @@ namespace Calculator.Application.Services.Implementations
                 throw new System.ArgumentNullException($"{nameof(input)} of type {typeof(OperationCalculateDto).FullName}");
             }
 
-            var value = input.LeftOperand + input.RightOperand;
+            var value = System.Math.Pow(input.LeftOperand, input.RightOperand);
             return new OperationCalculateResult { Value = value };
         }
     }

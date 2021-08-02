@@ -2,6 +2,6 @@
 {
     public class OperationCalculateResult
     {
-        public decimal Value { get; set; }
+        public double Value { get; set; }
     }
 }

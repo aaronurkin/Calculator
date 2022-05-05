@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "pwa-node",
+            "request": "launch",
+            "name": "Nest JS",
+            "args": [
+                "${workspaceFolder}/nestjs8.2.5/src/main.ts"
+            ],
+            "runtimeArgs": [
+                "--nolazy",
+                "-r",
+                "ts-node/register",
+                "-r",
+                "tsconfig-paths/register"
+            ],
+            "sourceMaps": true,
+            "envFile": "${workspaceFolder}/nestjs8.2.5/.env",
+            "cwd": "${workspaceRoot}/nestjs8.2.5",
+            "console": "integratedTerminal",
+            "protocol": "inspector"
+        }
+    ]
+}

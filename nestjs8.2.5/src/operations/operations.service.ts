@@ -17,7 +17,7 @@ export class OperationsService {
     const operationResult = operation.produce(requestDto);
     const operationResponseResolver =
       this.moduleRef.get<IOperationResponseResolver>(
-        `RESPONSE${requestDto.responseType}`,
+        `RESPONSE${requestDto.responseType || ''}`,
       );
 
     return operationResponseResolver.resolve(operationResult);

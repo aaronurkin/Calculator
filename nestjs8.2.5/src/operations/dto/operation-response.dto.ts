@@ -1,0 +1,3 @@
+interface OperationResponseDto {
+  value: number;
+}

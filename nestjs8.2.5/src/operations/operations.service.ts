@@ -1,6 +1,8 @@
 import { ModuleRef } from '@nestjs/core';
 import { Injectable } from '@nestjs/common';
 import { IOperation } from './operation.interface';
+import { OperationRequestDto } from '../operations/dto/operation-request.dto';
+import { OperationResponseDto } from '../operations/dto/operation-response.dto';
 import { IOperationResponseResolver } from './operation-response-resolver.interface';
 
 @Injectable()

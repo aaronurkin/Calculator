@@ -1,3 +1,3 @@
-interface OperationResponseDto {
+export interface OperationResponseDto {
   value: number;
 }

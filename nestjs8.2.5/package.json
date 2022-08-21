@@ -66,6 +66,12 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "@services/(.*)": "<rootDir>/services/$1",
+      "@providers/(.*)": "<rootDir>/providers/$1",
+      "@controllers/(.*)": "<rootDir>/controllers/$1",
+      "@infrastructure/(.*)": "<rootDir>/infrastructure/$1"
+    }
   }
 }

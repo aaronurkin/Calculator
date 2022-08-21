@@ -15,7 +15,7 @@ describe(AdditionOperation, () => {
       imports: [ApplicationInfrastructureModule],
     }).compile();
 
-    operation = module.get<IOperation>(`${ServiceToken.operation}+`);
+    operation = await module.resolve<IOperation>(`${ServiceToken.operation}+`);
   });
 
   it('should be defined', () => {

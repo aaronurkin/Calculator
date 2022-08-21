@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { IOperation } from '@services/application/operation';
 import { OperationInputDto } from '@services/application/dto';
+import { ServiceToken } from '@services/application/service-token';
 import { ApplicationInfrastructureModule } from '@infrastructure/application/module';
 import { MultiplicationOperationProvider } from '@providers/multiplication-operation.provider';
 import { MultiplicationOperation } from '@infrastructure/application/operations/multiplication.operation';
@@ -14,7 +15,7 @@ describe(MultiplicationOperation, () => {
       imports: [ApplicationInfrastructureModule],
     }).compile();
 
-    operation = module.get<IOperation>('OPERATION*');
+    operation = module.get<IOperation>(`${ServiceToken.operation}*`);
   });
 
   it('should be defined', () => {
